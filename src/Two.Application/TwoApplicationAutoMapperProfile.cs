@@ -38,6 +38,15 @@ namespace Two
             CreateMap<Kind, KindDto>();
             CreateMap<CreateUpdateKindDto, Kind>();
 
+            CreateMap<Member, MemberDto>();
+            CreateMap<CreateUpdateMemberDto, Member>();
+
+            CreateMap<Photo, PhotoDto>();
+            CreateMap<CreateUpdatePhotoDto, Photo>();
+
+            CreateMap<Specs, SpecsDto>();
+            CreateMap<CreateUpdateSpecsDto, Specs>();
+
         }
     }
 }

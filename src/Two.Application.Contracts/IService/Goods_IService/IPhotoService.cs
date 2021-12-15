@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Two.Dto.RBAC;
-using Two.DTO_Validation.RBAC;
+using Two.Dto.Goods_Dto;
+using Two.DTO_Validation.Goods_Dto_Validation;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
-namespace Two.IService.RBAC
+namespace Two.IService.Goods_IService
 {
-    public interface IUserService:ICrudAppService<
-        UserDto,
+    public interface IPhotoService : ICrudAppService<
+        PhotoDto,
         Guid,
         PagedAndSortedResultRequestDto,
-        CreateUpdateUserDto>
+        CreateUpdatePhotoDto>
     {
 
     }

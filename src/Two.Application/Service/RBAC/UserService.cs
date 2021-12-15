@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,26 @@ namespace Two.Service.RBAC
         PagedAndSortedResultRequestDto,
         CreateUpdateUserDto>, IUserService
     {
+        private readonly IRepository<User, Guid> db;
+
         public UserService(IRepository<User, Guid> repository) : base(repository)
         {
+            db = repository;
+        }
 
+        [HttpPost, Route("Login")]
+         public string Login(User user)
+        {
+            var a = db.GetListAsync().Result;
+            var model = a.Where(x => x.User_Name == user.User_Name && x.User_Password == user.User_Password).FirstOrDefault();
+            if (model != null)
+            {
+                return "登录成功";
+            }
+            else
+            {
+               return  "登录失败";
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace Two.Crawler
             {
                 var goods = Comm.Crawler.GoodsList(Node);//调用 当个节点的值
                 list.Add(goods);//添加进自己的集合 也可以直接入库操作
+                
 
             }
             return list;//返回这个集合 ，返回值可以是任意类型 看你喜欢

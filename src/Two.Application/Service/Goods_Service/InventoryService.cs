@@ -13,17 +13,16 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Two.Service.Goods_Service
 {
-    public class SpecsService : CrudAppService<
-          Specs,
-          SpecsDto,
+    public class InventoryService:CrudAppService<
+          Inventory,
+          InventoryDto,
           Guid,
           PagedAndSortedResultRequestDto,
-          CreateUpdateSpecsDto>, ISpecsService
+          CreateUpdateInventoryDto>,IInventoryService
     {
-        public SpecsService(IRepository<Specs, Guid> repository) : base(repository)
+        public InventoryService(IRepository<Inventory, Guid> repository) : base(repository)
         {
 
         }
-
     }
 }

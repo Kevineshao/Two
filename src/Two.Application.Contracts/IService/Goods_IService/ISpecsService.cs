@@ -8,11 +8,11 @@ using Volo.Abp.Application.Services;
 
 namespace Two.IService.Goods_IService
 {
-    public interface ISpecsService : ICrudAppService<
-         SpecsDto,
-         Guid,
-         PagedAndSortedResultRequestDto,
-         CreateUpdateSpecsDto>
+    public  interface ISpecsService : ICrudAppService<
+        SpecsDto,
+        Guid,
+        PagedAndSortedResultRequestDto,
+        CreateUpdateSpecsDto>
     {
     }
 }

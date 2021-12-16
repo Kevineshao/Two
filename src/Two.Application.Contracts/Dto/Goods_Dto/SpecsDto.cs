@@ -5,7 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Two.Dto.Goods_Dto
 {
-    public class SpecsDto: AuditedEntityDto<Guid>
+    public class SpecsDto : AuditedEntityDto<Guid>
     {
         public Guid Goods_Id { get; set; }//商品Id
         public int Specs_Weight { get; set; }//重量

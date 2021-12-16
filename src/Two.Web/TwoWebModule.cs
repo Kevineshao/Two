@@ -222,6 +222,12 @@ namespace Two.Web
             {
                 app.UseMultiTenancy();
             }
+            app.UseCors(x =>
+            {
+                x.AllowAnyHeader();
+                x.AllowAnyMethod();
+                x.AllowAnyOrigin();
+            });
 
             app.UseUnitOfWork();
             app.UseIdentityServer();

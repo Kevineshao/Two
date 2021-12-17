@@ -26,7 +26,7 @@ namespace Two.Service.Goods_Service
 
         }
         [HttpGet,Route("GoodShow")]
-        public async Task<List<GoodsDto>> GoodShow(string name)
+        public async Task<List<GoodsDto>> GoodShow(string name="")
         {
             var list = await Repository.GetListAsync();
             var slist = list.Where(x => x.Goods_Name.Contains(name)).ToList();

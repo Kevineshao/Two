@@ -14,5 +14,6 @@ namespace Two.IService.Goods_IService
         PagedAndSortedResultRequestDto,
         CreateUpdateKindDto>
     {
+
     }
 }

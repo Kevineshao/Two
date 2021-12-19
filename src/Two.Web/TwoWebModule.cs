@@ -37,6 +37,11 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Two.Web.Jwt;
+using System.Text;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Two.Web
 {
@@ -111,13 +116,27 @@ namespace Two.Web
 
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            context.Services.AddAuthentication()
-                .AddJwtBearer(options =>
+            //context.Services.AddAuthentication()
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.Authority = configuration["AuthServer:Authority"];
+            //        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+            //        options.Audience = "Two";
+            //    });
+            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options => {
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.Audience = "Two";
-                });
+                    ValidateIssuer = true,//是否验证Issuer
+                    ValidateAudience = true,//是否验证Audience
+                    ValidateLifetime = true,//是否验证失效时间
+                    ClockSkew = TimeSpan.FromSeconds(30),
+                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                    ValidAudience = Const.Aduience,//Audience
+                    ValidIssuer = Const.Issuer,//Issuer，这两项和前面签发jwt的设置一致
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Const.SecurityKey))
+                };
+            });
+
         }
 
         private void ConfigureAutoMapper()
@@ -191,6 +210,17 @@ namespace Two.Web
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "Two API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
+
+                    options.OperationFilter<AddResponseHeadersFilter>();
+                    options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>(); //在header中添加token，传递到后台
+                    options.OperationFilter<SecurityRequirementsOperationFilter>();
+                    options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                    {
+                        Description = "JWT授权(数据将在请求头中进行传递)直接在下面框中输入Bearer {token}(注意两者之间是一个空格) \"",
+                        Name = "Authorization",//jwt默认的参数名称
+                        In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头 中)
+                        Type = SecuritySchemeType.ApiKey
+                    });
                 }
             );
         }
@@ -241,5 +271,7 @@ namespace Two.Web
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
         }
+
+
     }
 }

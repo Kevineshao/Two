@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Two.Service.Goods_Service
         {
 
         }
+        [Authorize]
         [HttpPost, Route("Upload/file")]
         public string Upload(IFormFile file)
         {

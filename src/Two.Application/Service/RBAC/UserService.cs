@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace Two.Service.RBAC
         {
             db = repository;
         }
-
+        [Authorize]
         [HttpPost, Route("Login")]
          public string Login(User user)
         {

@@ -1,9 +1,12 @@
 ﻿using AutoMapper;
 using Two.Dto.Goods_Dto;
+using Two.Dto.Orders;
 using Two.Dto.RBAC;
 using Two.DTO_Validation.Goods_Dto_Validation;
+using Two.DTO_Validation.Orders_Dto_Validation;
 using Two.DTO_Validation.RBAC;
 using Two.Model.GoodsModel;
+using Two.Model.Orders;
 using Two.Model.RBAC;
 
 namespace Two
@@ -46,6 +49,19 @@ namespace Two
 
             CreateMap<Specs, SpecsDto>();
             CreateMap<CreateUpdateSpecsDto, Specs>();
+
+            //地址 
+            CreateMap<Address, AddressDto>();
+            CreateMap<CreateUpdateAddressDto, Address>();
+
+            CreateMap<Orders, OrdersDto>();
+            CreateMap<CreateUpdateOrdersDto, Orders>();
+
+            CreateMap<Logistics, LogisticsDto>();
+            CreateMap<CreateUpdateLogisticsDto, Logistics>();
+
+            CreateMap<Detail, DetailDto>();
+            CreateMap<CreateUpdateDetailDato, Detail>();
 
         }
     }

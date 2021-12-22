@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Two.Model.GoodsModel;
+using Two.Model.Orders;
 using Two.Model.RBAC;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
@@ -76,6 +77,11 @@ namespace Two.EntityFrameworkCore
         public DbSet<Photo> GetPhotos { get; set; }
         public DbSet<Specs> GetSpecs { get; set; }
 
+        public DbSet<Address> GetAddresses { get; set; }
+        public DbSet<Detail> GetDetails { get; set; }
+        public DbSet<Logistics> GetLogistics { get; set; }
+        public DbSet<Orders> GetOrders { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -128,9 +134,7 @@ namespace Two.EntityFrameworkCore
             });
 
 
-
-
-
+            
             builder.Entity<Goods>(b =>
             {
                 b.ToTable("tb_Goods");
@@ -164,6 +168,29 @@ namespace Two.EntityFrameworkCore
             builder.Entity<Specs>(b =>
             {
                 b.ToTable("tb_Specs");
+                b.ConfigureByConvention();
+            });
+
+
+
+            builder.Entity<Address>(b =>
+            {
+                b.ToTable("tb_Address");
+                b.ConfigureByConvention();
+            });
+            builder.Entity<Detail>(b =>
+            {
+                b.ToTable("tb_Detail");
+                b.ConfigureByConvention();
+            });
+            builder.Entity<Logistics>(b =>
+            {
+                b.ToTable("tb_Logistics");
+                b.ConfigureByConvention();
+            });
+            builder.Entity<Orders>(b =>
+            {
+                b.ToTable("tb_Orders");
                 b.ConfigureByConvention();
             });
 

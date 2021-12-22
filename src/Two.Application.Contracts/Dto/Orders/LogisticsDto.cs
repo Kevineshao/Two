@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Two.Enumerate;
-using Volo.Abp.Domain.Entities.Auditing;
+using Volo.Abp.Application.Dtos;
 
-namespace Two.Model.Orders
+namespace Two.Dto.Orders
 {
-    //物流表
-    [Table("tb_Logistics")]
-    public class Logistics : AuditedAggregateRoot<Guid>
+    public class LogisticsDto : AuditedEntityDto<Guid>
     {
         public string Logistics_Order { get; set; }//订单号
         public Guid Logistics_Address { get; set; }//收件人地址
@@ -22,4 +17,3 @@ namespace Two.Model.Orders
         public string Logistics_Record { get; set; }//配送记录
     }
 }
-                    

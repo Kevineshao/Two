@@ -27,6 +27,29 @@ namespace Two.Service.Goods_Service
         {
 
         }
+        [HttpGet, Route("KindShow")]
+        public async Task<List<KindDto>> KindShow(string name = "")
+        {
+            var list = await Repository.GetListAsync();
+            var slist = list.Where(x => x.Kind_Name.Contains(name)).ToList();
+            List<KindDto> str = new List<KindDto>();
+            slist.ForEach(x =>
+            {
+                str.Add(new KindDto()
+                {
+                    CreationTime = x.CreationTime,
+                    CreatorId = x.CreatorId,
+                    Kind_Name = x.Kind_Name,
+                    Kind_State = x.Kind_State,
+                    Id = x.Id,
+                    Kind_Pid=x.Kind_Pid,
+                    LastModificationTime = x.LastModificationTime,
+                    LastModifierId = x.LastModifierId
+                });
+            });
+            return str;
+        }
+
         [Authorize]
         [HttpPost, Route("Upload/file")]
         public string Upload(IFormFile file)

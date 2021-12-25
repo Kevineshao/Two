@@ -28,9 +28,9 @@ namespace Two.Service.RBAC
         {
             db = repository;
         }
-        [Authorize]
+        //[Authorize]
         [HttpPost, Route("Login")]
-         public string Login(User user)
+        public string Login(User user)
         {
             var a = db.GetListAsync().Result;
             var model = a.Where(x => x.User_Name == user.User_Name && x.User_Password == user.User_Password).FirstOrDefault();
@@ -40,7 +40,7 @@ namespace Two.Service.RBAC
             }
             else
             {
-               return  "登录失败";
+                return "登录失败";
             }
         }
     }

@@ -8,7 +8,7 @@ using Volo.Abp.Application.Services;
 
 namespace Two.IService.Orders_IService
 {
-     public interface IAddressService : ICrudAppService<
+    public interface IAddressService : ICrudAppService<
          AddressDto,
          Guid,
          PagedAndSortedResultRequestDto,

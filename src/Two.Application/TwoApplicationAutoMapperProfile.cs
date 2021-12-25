@@ -51,9 +51,7 @@ namespace Two
             CreateMap<CreateUpdateSpecsDto, Specs>();
 
             //地址 
-            CreateMap<Address, AddressDto>();
-            CreateMap<CreateUpdateAddressDto, Address>();
-
+           
             CreateMap<Orders, OrdersDto>();
             CreateMap<CreateUpdateOrdersDto, Orders>();
 
@@ -63,6 +61,8 @@ namespace Two
             CreateMap<Detail, DetailDto>();
             CreateMap<CreateUpdateDetailDato, Detail>();
 
+            CreateMap<Address, AddressDto>();
+            CreateMap<CreateUpdateAddressDto, Address>();
         }
     }
 }

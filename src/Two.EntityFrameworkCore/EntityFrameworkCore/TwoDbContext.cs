@@ -173,11 +173,7 @@ namespace Two.EntityFrameworkCore
 
 
 
-            builder.Entity<Address>(b =>
-            {
-                b.ToTable("tb_Address");
-                b.ConfigureByConvention();
-            });
+           
             builder.Entity<Detail>(b =>
             {
                 b.ToTable("tb_Detail");
@@ -191,6 +187,11 @@ namespace Two.EntityFrameworkCore
             builder.Entity<Orders>(b =>
             {
                 b.ToTable("tb_Orders");
+                b.ConfigureByConvention();
+            });
+            builder.Entity<Address>(b =>
+            {
+                b.ToTable("tb_Address");
                 b.ConfigureByConvention();
             });
 
